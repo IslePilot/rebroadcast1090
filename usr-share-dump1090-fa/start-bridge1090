@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# Helper script that reads /etc/default/bridge1090
+# and either starts bridging data with the defined
+# arguments, or exits with status 64 to tell systemd
+# not to auto-restart the service.
+
+if [ -f /etc/default/bridge1090 ]
+then
+    . /etc/default/bridge1090
+fi
+
+if [ "x$ENABLED" != "xyes" ]
+then
+    echo "bridge1090 not enabled in /etc/default/brdige1090" >&2
+    exit 64
+fi
+
+exec /usr/bin/socat -u TCP:$SERVER_ADDR:$SERVER_PORT,forever,interval=5 TCP:$CLIENT_ADDR:$CLIENT_PORT,forever,interval=5 
+
+# exec failed, do not restart
+exit 64

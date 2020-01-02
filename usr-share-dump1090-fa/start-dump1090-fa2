@@ -1,0 +1,27 @@
+#!/bin/sh
+# Helper script that reads /etc/default/dump1090-fa2
+# and either starts dump1090-fa2 with the configured
+# arguments, or exits with status 64 to tell systemd
+# not to auto-restart the service.
+if [ -f /etc/default/dump1090-fa2 ]
+then
+    . /etc/default/dump1090-fa2
+fi
+if [ -f /var/cache/piaware2/location.env ]
+then
+    . /var/cache/piaware2/location.env
+fi
+if [ "x$ENABLED" != "xyes" ]
+then
+    echo "dump1090-fa2 not enabled in /etc/default/dump1090-fa2" >&2
+    exit 64
+fi
+if [ -n "$PIAWARE_LAT" -a -n "$PIAWARE_LON" ]
+then
+    POSITION="--lat $PIAWARE_LAT --lon $PIAWARE_LON"
+fi
+exec /usr/bin/dump1090-fa \
+     $RECEIVER_OPTIONS2 $DECODER_OPTIONS2 $NET_OPTIONS2 $JSON_OPTIONS2 $POSITION \
+     "$@"
+# exec failed, do not restart
+exit 64

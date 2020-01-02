@@ -1,0 +1,14 @@
+# bridge1090 configuration
+# This is sourced by /usr/share/dump1090-fa/start-bridge1090 as a
+# shellscript fragment.
+
+# bridge1090 won't automatically start unless ENABLED=yes
+ENABLED=yes
+
+# Where do we connect to get the dump1090-fa raw output?
+SERVER_ADDR=127.0.0.1
+SERVER_PORT=30005
+
+# Where do we connect to insert the uat2esnt AVR input?
+CLIENT_ADDR=127.0.0.1
+CLIENT_PORT=31004

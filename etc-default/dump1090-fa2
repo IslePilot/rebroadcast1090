@@ -1,0 +1,12 @@
+# dump1090-fa2 configuration
+# This is sourced by /usr/share/dump1090-fa/start-dump1090-fa2 as a
+# shellscript fragment.
+# If you are using a PiAware sdcard image, this config file is regenerated
+# on boot based on the contents of piaware-config.txt; any changes made to this
+# file will be lost.
+# dump1090-fa2 won't automatically start unless ENABLED=yes
+ENABLED=yes
+RECEIVER_OPTIONS2="--device-index 00000102 --gain -10 --ppm 0 --net-bo-port 31005"
+DECODER_OPTIONS2="--max-range 360"  
+NET_OPTIONS2="--net --net-only  --net-heartbeat 60 --net-ro-size 1000 --net-ro-interval 1 --net-ri-port 31001 --net-ro-port 31002 --net-sbs-port 31003 --net-bi-port 31004 --net-bo-port 31005"  
+JSON_OPTIONS2="--json-location-accuracy 1"  

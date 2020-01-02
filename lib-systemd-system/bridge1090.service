@@ -1,0 +1,23 @@
+# bridge1090 service for systemd
+
+[Unit]
+Description=Bridge data from dump1090-fa to dump1090-fa2
+Documentation=https://flightaware.com/adsb/piaware
+Wants=network.target
+After=network.target
+
+[Service]
+User=dump1090
+RuntimeDirectory=dump1090-fa
+RuntimeDirectoryMode=0755
+ExecStart=/usr/share/dump1090-fa/start-bridge1090 --write-json %t/bridge1090 --quiet
+SyslogIdentifier=bridge1090
+Type=simple
+Restart=on-failure
+RestartSec=30
+RestartPreventExitStatus=64
+Nice=-5
+
+[Install]
+WantedBy=default.target
+

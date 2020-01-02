@@ -1,0 +1,14 @@
+# bridge978 configuration
+# This is sourced by /usr/share/dump1090-fa/start-bridge978 as a
+# shellscript fragment.
+
+# bridge978 won't automatically start unless ENABLED=yes
+ENABLED=yes
+
+# Where do we connect to get the dump978-fa raw output?
+SERVER_ADDR=127.0.0.1
+SERVER_PORT=30978
+
+# Where do we connect to insert the uat2esnt AVR input?
+CLIENT_ADDR=127.0.0.1
+CLIENT_PORT=31001
