@@ -12,13 +12,18 @@ https://github.com/abcd567a/two-receivers/blob/master/2-receivers-dump-fa.sh
 Copy the files and set appropriate ownership and modes and then start the new
 services.
 
-Files in /lib/systemd/system should be set to mode 644
-Files in /usr/share/dump1090-fa should be set to mode 755 
+Files in /lib/systemd/system should be set to mode 644.
+
+Files in /usr/share/dump1090-fa should be set to mode 755.
+
 Files in /etc/default should be set to mode 644
 
 sudo systemctl enable bridge978
+
 sudo systemctl enable bridge1090
+
 sudo systemctl restart bridge978
+
 sudo systemctl restart bridge1090
 
 
